@@ -2,15 +2,15 @@
 
 # Table of Contents
 
-- [K-FAC](#K-FAC)
-- [Shampoo](#Shampoo)
-- [SMW](#SMW)
-- [PSGD](#PSGD)
-- [GGT](#BFGS)
-- [BFGS](#BFGS)
-- [Empirical Study](#empirical-study)
-- [Application](#Application)
-- [Other Papers](#others)
+- [Awesome Second Order Optimization ](#awesome-second-order-optimization-)
+- [Table of Contents](#table-of-contents)
+  - [K-FAC](#k-fac)
+  - [Shampoo](#shampoo)
+  - [SMW](#smw)
+  - [PSGD](#psgd)
+  - [GGT](#ggt)
+  - [BFGS](#bfgs)
+  - [Empirical-study](#empirical-study)
 
 ## K-FAC
 
@@ -64,18 +64,20 @@
   - 2022
   - <details><summary>Digest</summary> Second-order optimization algorithms exhibit excellent convergence properties for training deep learning models, but often incur significant computation and memory overheads. This can result in lower training efficiency than the first-order counterparts such as stochastic gradient descent (SGD). In this work, we present a memory- and time-efficient second-order algorithm named Eva with two novel techniques: 1) we construct the second-order information with the Kronecker factorization of small stochastic vectors over a mini-batch of training data to reduce memory consumption, and 2) we derive an efficient update formula without explicitly computing the inverse of matrices using the Sherman-Morrison formula. We further extend Eva to a general vectorized approximation framework to improve the compute and memory efficiency of two existing second-order algorithms (FOOF and Shampoo) without affecting their convergence performance. Extensive experimental results on different models and datasets show that Eva reduces the end-to-end training time up to 2.05x and 2.42x compared to first-order SGD and second-order algorithms (K-FAC and Shampoo), respectively.
 
-
 - Scalable K-FAC Training for Deep Neural Networks with Distributed Preconditioning [[paper]](https://arxiv.org/abs/2306.01685)
   - Lin Zhang, Shaohuai Shi, Wei Wang, Bo Li.
   - 2022
   - <details><summary>Digest</summary> The second-order optimization methods, notably the D-KFAC (Distributed Kronecker Factored Approximate Curvature) algorithms, have gained traction on accelerating deep neural network (DNN) training on GPU clusters. However, existing D-KFAC algorithms require to compute and communicate a large volume of second-order information, i.e., Kronecker factors (KFs), before preconditioning gradients, resulting in large computation and communication overheads as well as a high memory footprint. In this paper, we propose DP-KFAC, a novel distributed preconditioning scheme that distributes the KF constructing tasks at different DNN layers to different workers. DP-KFAC not only retains the convergence property of the existing D-KFAC algorithms but also enables three benefits: reduced computation overhead in constructing KFs, no communication of KFs, and low memory footprint. Extensive experiments on a 64-GPU cluster show that DP-KFAC reduces the computation overhead by 1.55x-1.65x, the communication cost by 2.79x-3.15x, and the memory footprint by 1.14x-1.47x in each second-order update compared to the state-of-the-art D-KFAC methods.
 
+- HyLo: a hybrid low-rank natural gradient descent method [[paper]](https://dl.acm.org/doi/abs/10.5555/3571885.3571947)
+  - Baorun Mu, Saeed Soori, Bugra Can, M. Gürbüzbalaban, M. Dehnavi.
+  - 2022
+  - <details><summary>Digest</summary> This work presents a Hybrid Low-Rank Natural Gradient Descent method, called HyLo, that accelerates the training time of deep neural networks. Natural gradient descent (NGD) requires computing the inverse of the Fisher information matrix (FIM), which is typically expensive at large-scale. Kronecker factorization methods such as KFAC attempt to improve NGD's running time by approximating the FIM with Kronecker factors. However, the size of Kronecker factors increases quadratically as the model size grows. Instead, in HyLo, we use the Sherman-Morrison-Woodbury variant of NGD (SNGD) and propose a reformulation of SNGD to resolve its scalability issues. HyLo uses a computationally-efficient low-rank factorization to achieve superior timing for Fisher inverses. We evaluate HyLo on large models including ResNet-50, U-Net, and ResNet-32 on up to 64 GPUs. HyLo converges 1.4×-2.1× faster than the state-of-the-art distributed implementation of KFAC and reduces the computation and communication time up to 350× and 10.7× on ResNet-50.
+
 - MKOR: Momentum-Enabled Kronecker-Factor-Based Optimizer Using Rank-1 Updates [[paper]](https://arxiv.org/abs/2306.01685)
   - Mohammad Mozaffari, Sikan Li, Zhao Zhang, Maryam Mehri Dehnavi.
   - 2023
   - <details><summary>Digest</summary> This work proposes a Momentum-Enabled Kronecker-Factor-Based Optimizer Using Rank-1 updates, called MKOR, that improves the training time and convergence properties of deep neural networks (DNNs). Second-order techniques, while enjoying higher convergence rates vs first-order counterparts, have cubic complexity with respect to either the model size and/or the training batch size. Hence they exhibit poor scalability and performance in transformer models, e.g. large language models (LLMs), because the batch sizes in these models scale by the attention mechanism sequence length, leading to large model size and batch sizes. MKOR's complexity is quadratic with respect to the model size, alleviating the computation bottlenecks in second-order methods. Because of their high computation complexity, state-of-the-art implementations of second-order methods can only afford to update the second order information infrequently, and thus do not fully exploit the promise of better convergence from these updates. By reducing the communication complexity of the second-order updates as well as achieving a linear communication complexity, MKOR increases the frequency of second order updates. We also propose a hybrid version of MKOR (called MKOR-H) that mid-training falls backs to a first order optimizer if the second order updates no longer accelerate convergence. Our experiments show that MKOR outperforms state -of-the-art first order methods, e.g. the LAMB optimizer, and best implementations of second-order methods, i.e. KAISA/KFAC, up to 2.57x and 1.85x respectively on BERT-Large-Uncased on 64 GPUs.
-
-
 
 ## Shampoo
 
@@ -142,3 +144,10 @@
   - Donald Goldfarb, Yi Ren, Achraf Bahamou
   - 2020
   - <details><summary>Digest</summary> We consider the development of practical stochastic quasi-Newton, and in particular Kronecker-factored block-diagonal BFGS and L-BFGS methods, for training deep neural networks (DNNs). In DNN training, the number of variables and components of the gradient n is often of the order of tens of millions and the Hessian has n2 elements. Consequently, computing and storing a full n×n BFGS approximation or storing a modest number of (step, change in gradient) vector pairs for use in an L-BFGS implementation is out of the question. In our proposed methods, we approximate the Hessian by a block-diagonal matrix and use the structure of the gradient and Hessian to further approximate these blocks, each of which corresponds to a layer, as the Kronecker product of two much smaller matrices. This is analogous to the approach in KFAC, which computes a Kronecker-factored block-diagonal approximation to the Fisher matrix in a stochastic natural gradient method. Because the indefinite and highly variable nature of the Hessian in a DNN, we also propose a new damping approach to keep the upper as well as the lower bounds of the BFGS and L-BFGS approximations bounded. In tests on autoencoder feed-forward neural network models with either nine or thirteen layers applied to three datasets, our methods outperformed or performed comparably to KFAC and state-of-the-art first-order stochastic methods.
+
+## Empirical-study
+
+- Three Mechanisms of Weight Decay Regularization [[paper]](https://arxiv.org/abs/1810.12281)
+  - Guodong Zhang, Chaoqi Wang, Bowen Xu, Roger Grosse
+  - 2018
+  - <details><summary>Digest</summary> Weight decay is one of the standard tricks in the neural network toolbox, but the reasons for its regularization effect are poorly understood, and recent results have cast doubt on the traditional interpretation in terms of L2 regularization. Literal weight decay has been shown to outperform L2 regularization for optimizers for which they differ. We empirically investigate weight decay for three optimization algorithms (SGD, Adam, and K-FAC) and a variety of network architectures. We identify three distinct mechanisms by which weight decay exerts a regularization effect, depending on the particular optimization algorithm and architecture: (1) increasing the effective learning rate, (2) approximately regularizing the input-output Jacobian norm, and (3) reducing the effective damping coefficient for second-order optimization. Our results provide insight into how to improve the regularization of neural networks.
