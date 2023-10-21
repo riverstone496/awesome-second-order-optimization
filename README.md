@@ -275,6 +275,16 @@
   - 1998
   - <details><summary>Digest</summary> When a parameter space has a certain underlying structure, the ordinary gradient of a function does not represent its steepest direction, but the natural gradient does. Information geometry is used for calculating the natural gradients in the parameter space of perceptrons, the space of matrices (for blind source separation), and the space of linear dynamical systems (for blind source deconvolution). The dynamical behavior of natural gradient online learning is analyzed and is proved to be Fisher efficient, implying that it has asymptotically the same performance as the optimal batch estimation of parameters. This suggests that the plateau phenomenon, which appears in the backpropagation learning algorithm of multilayer perceptrons, might disappear or might not be so serious when the natural gradient is used. An adaptive method of updating the learning rate is proposed and analyzed.
 
+- Natural Gradient Descent for On-Line Learning [[paper]](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.81.5461)
+  - Magnus Rattray, David Saad, and Shun-ichi Amari
+  - 1998
+  - <details><summary>Digest</summary> Natural gradient descent is an on-line variable-metric optimization algorithm which utilizes an underlying Riemannian parameter space. We analyze the dynamics of natural gradient descent beyond the asymptotic regime by employing an exact statistical mechanics description of learning in two-layer feed-forward neural networks. For a realizable learning scenario we find significant improvements over standard gradient descent for both the transient and asymptotic stages of learning, with a slower power law increase in learning time as task complexity grows.
+
+- Adaptive natural gradient learning algorithms for various stochastic models [[paper]](https://www.sciencedirect.com/science/article/abs/pii/S0893608000000514)
+  - H Park, S I Amari, K Fukumizu
+  - 2000
+  - <details><summary>Digest</summary> The natural gradient method has an ideal dynamic behavior which resolves the slow learning speed of the standard gradient descent method caused by plateaus. However, it is required to calculate the Fisher information matrix and its inverse, which makes the implementation of the natural gradient almost impossible. To solve this problem, a preliminary study has been proposed concerning an adaptive method of calculating an estimate of the inverse of the Fisher information matrix, which is called the adaptive natural gradient learning method. In this paper, we show that the adaptive natural gradient method can be extended to be applicable to a wide class of stochastic models: regression with an arbitrary noise model and classification with an arbitrary number of classes. We give explicit forms of the adaptive natural gradient for these models. We confirm the practical advantage of the proposed algorithms through computational experiments on benchmark problems.
+
 - On Natural Learning and Pruning in Multilayered Perceptrons [[paper]](https://repository.ubn.ru.nl/bitstream/handle/2066/100962/100962.pdf;jsessionid=75152C23E1CE32AF7B8021F952C7E483?sequence=1)
   - Tom Heskes
   - 2000
