@@ -13,8 +13,8 @@
   - [Diagonal Second-Order Optimization](#diagonal-second-order-optimization)
   - [Bayesian Second-Order Optimization](#bayesian-second-order-optimization)
   - [Other Second-order Optimization](#other-second-order-optimization)
-  - [Empirical-study](#empirical-study)
-  - [Theoretical-study](#theoretical-study)
+  - [Empirical Study](#empirical-study)
+  - [Theoretical Study](#theoretical-study)
 
 ## K-FAC
 
@@ -42,6 +42,11 @@
   - Kai-Xin Gao, Xiao-Lei Liu, Zheng-Hai Huang, Min Wang, Shuangling Wang, Zidong Wang, Dachuan Xu, Fan Yu.
   - 2020
   - <details><summary>Digest</summary> Using second-order optimization methods for training deep neural networks (DNNs) has attracted many researchers. A recently proposed method, Eigenvalue-corrected Kronecker Factorization (EKFAC) (George et al., 2018), proposes an interpretation of viewing natural gradient update as a diagonal method, and corrects the inaccurate re-scaling factor in the Kronecker-factored eigenbasis. Gao et al. (2020) considers a new approximation to the natural gradient, which approximates the Fisher information matrix (FIM) to a constant multiplied by the Kronecker product of two matrices and keeps the trace equal before and after the approximation. In this work, we combine the ideas of these two methods and propose Trace-restricted Eigenvalue-corrected Kronecker Factorization (TEKFAC). The proposed method not only corrects the inexact re-scaling factor under the Kronecker-factored eigenbasis, but also considers the new approximation method and the effective damping technique proposed in Gao et al. (2020). We also discuss the differences and relationships among the Kronecker-factored approximations. Empirically, our method outperforms SGD with momentum, Adam, EKFAC and TKFAC on several DNNs.
+
+- Optimization of Graph Neural Networks with Natural Gradient Descent [[paper]](https://arxiv.org/abs/2008.09624)
+  - Mohammad Rasool Izadi, Yihao Fang, Robert Stevenson, Lizhen Lin
+  - 2020
+  - <details><summary>Digest</summary> In this work, we propose to employ information-geometric tools to optimize a graph neural network architecture such as the graph convolutional networks. More specifically, we develop optimization algorithms for the graph-based semi-supervised learning by employing the natural gradient information in the optimization process. This allows us to efficiently exploit the geometry of the underlying statistical model or parameter space for optimization and inference. To the best of our knowledge, this is the first work that has utilized the natural gradient for the optimization of graph neural networks that can be extended to other semi-supervised problems. Efficient computations algorithms are developed and extensive nu.
 
 - SKFAC: Training Neural Networks with Faster Kronecker-Factored Approximate Curvature [[paper]](https://ieeexplore.ieee.org/document/9578481)
   - Zedong Tang; Fenlong Jiang; Maoguo Gong; Hao Li; Yue Wu; Fan Yu; Zidong Wang; Min Wang.
@@ -114,11 +119,6 @@
   - Kai-Xin Gao, Xiao-Lei Liu, Zheng-Hai Huang, Min Wang, Zidong Wang, Dachuan Xu, Fan Yu
   - 2020
   - <details><summary>Digest</summary> Second-order optimization methods have the ability to accelerate convergence by modifying the gradient through the curvature matrix. There have been many attempts to use second-order optimization methods for training deep neural networks. Inspired by diagonal approximations and factored approximations such as Kronecker-Factored Approximate Curvature (KFAC), we propose a new approximation to the Fisher information matrix (FIM) called Trace-restricted Kronecker-factored Approximate Curvature (TKFAC) in this work, which can hold the certain trace relationship between the exact and the approximate FIM. In TKFAC, we decompose each block of the approximate FIM as a Kronecker product of two smaller matrices and scaled by a coefficient related to trace. We theoretically analyze TKFAC's approximation error and give an upper bound of it. We also propose a new damping technique for TKFAC on convolutional neural networks to maintain the superiority of second-order optimization methods during training. Experiments show that our method has better performance compared with several state-of-the-art algorithms on some deep network architectures.
-
-- Optimization of Graph Neural Networks with Natural Gradient Descent [[paper]](https://arxiv.org/abs/2008.09624)
-  - Mohammad Rasool Izadi, Yihao Fang, Robert Stevenson, Lizhen Lin
-  - 2020
-  - <details><summary>Digest</summary> In this work, we propose to employ information-geometric tools to optimize a graph neural network architecture such as the graph convolutional networks. More specifically, we develop optimization algorithms for the graph-based semi-supervised learning by employing the natural gradient information in the optimization process. This allows us to efficiently exploit the geometry of the underlying statistical model or parameter space for optimization and inference. To the best of our knowledge, this is the first work that has utilized the natural gradient for the optimization of graph neural networks that can be extended to other semi-supervised problems. Efficient computations algorithms are developed and extensive nu.
 
 - KAISA: An Adaptive Second-Order Optimizer Framework for Deep Neural Networks [[paper]](https://arxiv.org/abs/2107.01739)
   - J. Gregory Pauloski, Qi Huang, Lei Huang, Shivaram Venkataraman, Kyle Chard, Ian Foster, Zhao Zhang.
@@ -222,6 +222,11 @@
   - 2010
   - <details><summary>Digest</summary> We develop a 2nd-order optimization method based on the "Hessian-free" approach, and apply it to training deep auto-encoders. Without using pre-training, we obtain results superior to those reported by Hinton & Salakhutdinov (2006) on the same tasks they considered. Our method is practical, easy to use, scales nicely to very large datasets, and isn't limited in applicability to auto-encoders, or any specific model class. We also discuss the issue of "pathological curvature" as a possible explanation for the difficulty of deep-learning and how 2nd-order optimization, and our method in particular, effectively deals with it.
 
+- Training Neural Networks with Stochastic Hessian-Free Optimization [[paper]](https://arxiv.org/abs/1301.3641)
+  - Ryan Kiros
+  - 2013
+  - <details><summary>Digest</summary> Hessian-free (HF) optimization has been successfully used for training deep autoencoders and recurrent networks. HF uses the conjugate gradient algorithm to construct update directions through curvature-vector products that can be computed on the same order of time as gradients. In this paper we exploit this property and study stochastic HF with gradient and curvature mini-batches independent of the dataset size. We modify Martens' HF for these settings and integrate dropout, a method for preventing co-adaptation of feature detectors, to guard against overfitting. Stochastic Hessian-free optimization gives an intermediary between SGD and HF that achieves competitive performance on both classification and deep autoencoder experiments.
+
 - Hessian-free Optimization for Learning Deep Multidimensional Recurrent Neural Networks [[paper]](https://arxiv.org/abs/1509.03475)
   - Minhyung Cho, Chandra Shekhar Dhir, Jaehyung Lee
   - 2015
@@ -293,7 +298,7 @@
   - 2021
   - <details><summary>Digest</summary> We propose a novel second-order optimization framework for training the emerging deep continuous-time models, specifically the Neural Ordinary Differential Equations (Neural ODEs). Since their training already involves expensive gradient computation by solving a backward ODE, deriving efficient second-order methods becomes highly nontrivial. Nevertheless, inspired by the recent Optimal Control (OC) interpretation of training deep networks, we show that a specific continuous-time OC methodology, called Differential Programming, can be adopted to derive backward ODEs for higher-order derivatives at the same O(1) memory cost. We further explore a low-rank representation of the second-order derivatives and show that it leads to efficient preconditioned updates with the aid of Kronecker-based factorization. The resulting method -- named SNOpt -- converges much faster than first-order baselines in wall-clock time, and the improvement remains consistent across various applications, e.g. image classification, generative flow, and time-series prediction. Our framework also enables direct architecture optimization, such as the integration time of Neural ODEs, with second-order feedback policies, strengthening the OC perspective as a principled tool of analyzing optimization in deep learning. Our code is available at this https URL.
 
-## Empirical-study
+## Empirical Study
 
 - Three Mechanisms of Weight Decay Regularization [[paper]](https://arxiv.org/abs/1810.12281)
   - Guodong Zhang, Chaoqi Wang, Bowen Xu, Roger Grosse
@@ -315,7 +320,7 @@
   - 2020
   - <details><summary>Digest</summary> Machine learning is predicated on the concept of generalization: a model achieving low error on a sufficiently large training set should also perform well on novel samples from the same distribution. We show that both data whitening and second order optimization can harm or entirely prevent generalization. In general, model training harnesses information contained in the sample-sample second moment matrix of a dataset. For a general class of models, namely models with a fully connected first layer, we prove that the information contained in this matrix is the only information which can be used to generalize. Models trained using whitened data, or with certain second order optimization schemes, have less access to this information, resulting in reduced or nonexistent generalization ability. We experimentally verify these predictions for several architectures, and further demonstrate that generalization continues to be harmed even when theoretical requirements are relaxed. However, we also show experimentally that regularized second order optimization can provide a practical tradeoff, where training is accelerated but less information is lost, and generalization can in some circumstances even improve.
 
-## Theoretical-study
+## Theoretical Study
 
 - Online Natural Gradient as a Kalman Filter [[paper]](https://arxiv.org/abs/1703.00209)
   - Yann Ollivier
@@ -331,6 +336,11 @@
   - Alberto Bernacchia, Mate Lengyel, Guillaume Hennequin
   - 2018
   - <details><summary>Digest</summary> Stochastic gradient descent (SGD) remains the method of choice for deep learning, despite the limitations arising for ill-behaved objective functions. In cases where it could be estimated, the natural gradient has proven very effective at mitigating the catastrophic effects of pathological curvature in the objective function, but little is known theoretically about its convergence properties, and it has yet to find a practical implementation that would scale to very deep and large networks. Here, we derive an exact expression for the natural gradient in deep linear networks, which exhibit pathological curvature similar to the nonlinear case. We provide for the first time an analytical solution for its convergence rate, showing that the loss decreases exponentially to the global minimum in parameter space. Our expression for the natural gradient is surprisingly simple, computationally tractable, and explains why some approximations proposed previously work well in practice. This opens new avenues for approximating the natural gradient in the nonlinear case, and we show in preliminary experiments that our online natural gradient descent outperforms SGD on MNIST autoencoding while sharing its computational simplicity.
+
+- Fast Convergence of Natural Gradient Descent for Over-Parameterized Neural Networks [[paper]](https://proceedings.neurips.cc/paper/2019/hash/1da546f25222c1ee710cf7e2f7a3ff0c-Abstract.html)
+  - Guodong Zhang, James Martens, Roger B. Grosse
+  - 2019
+  - <details><summary>Digest</summary> Natural gradient descent has proven very effective at mitigating the catastrophic effects of pathological curvature in the objective function, but little is known theoretically about its convergence properties, especially for \emph{non-linear} networks. In this work, we analyze for the first time the speed of convergence to global optimum for natural gradient descent on non-linear neural networks with the squared error loss. We identify two conditions which guarantee the global convergence: (1) the Jacobian matrix (of network's output for all training cases w.r.t the parameters) is full row rank and (2) the Jacobian matrix is stable for small perturbations around the initialization. For two-layer ReLU neural networks (i.e. with one hidden layer), we prove that these two conditions do hold throughout the training under the assumptions that the inputs do not degenerate and the network is over-parameterized. We further extend our analysis to more general loss function with similar convergence property. Lastly, we show that K-FAC, an approximate natural gradient descent method, also converges to global minima under the same assumptions.
 
 - Understanding Approximate Fisher Information for Fast Convergence of Natural Gradient Descent in Wide Neural Networks [[paper]](https://arxiv.org/abs/2010.00879)
   - Ryo Karakida, Kazuki Osawa
