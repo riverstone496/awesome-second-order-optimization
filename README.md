@@ -333,6 +333,11 @@
   - 2013
   - <details><summary>Digest</summary> We evaluate natural gradient, an algorithm originally proposed in Amari (1997), for learning deep models. The contributions of this paper are as follows. We show the connection between natural gradient and three other recently proposed methods for training deep models: Hessian-Free (Martens, 2010), Krylov Subspace Descent (Vinyals and Povey, 2012) and TONGA (Le Roux et al., 2008). We describe how one can use unlabeled data to improve the generalization error obtained by natural gradient and empirically evaluate the robustness of the algorithm to the ordering of the training set compared to stochastic gradient descent. Finally we extend natural gradient to incorporate second order information alongside the manifold information and provide a benchmark of the new algorithm using a truncated Newton approach for inverting the metric matrix instead of using a diagonal approximation of it.
 
+- Second-Order Stochastic Optimization for Machine Learning in Linear Time [[paper]](https://arxiv.org/abs/1602.03943)
+  - Naman Agarwal, Brian Bullins, Elad Hazan
+  - 2016
+  - <details><summary>Digest</summary> First-order stochastic methods are the state-of-the-art in large-scale machine learning optimization owing to efficient per-iteration complexity. Second-order methods, while able to provide faster convergence, have been much less explored due to the high cost of computing the second-order information. In this paper we develop second-order stochastic methods for optimization problems in machine learning that match the per-iteration cost of gradient based methods, and in certain settings improve upon the overall running time over popular first-order methods. Furthermore, our algorithm has the desirable property of being implementable in time linear in the sparsity of the input data.
+
 - Practical Gauss-Newton Optimisation for Deep Learning [[paper]](https://arxiv.org/abs/1706.03662)
   - Aleksandar Botev, Hippolyt Ritter, David Barber
   - 2017
