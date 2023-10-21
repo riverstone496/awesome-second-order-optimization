@@ -12,6 +12,7 @@
   - [Hessian Free](#hessian-free)
   - [Diagonal Second-Order Optimization](#diagonal-second-order-optimization)
   - [Bayesian Second-Order Optimization](#bayesian-second-order-optimization)
+  - [Natural Gradient Descent](#natural-gradient-descent)
   - [Other Second-order Optimization](#other-second-order-optimization)
   - [Empirical Study](#empirical-study)
   - [Theoretical Study](#theoretical-study)
@@ -316,22 +317,34 @@
   - 2019
   - <details><summary>Digest</summary> Bayesian methods promise to fix many shortcomings of deep learning, but they are impractical and rarely match the performance of standard methods, let alone improve them. In this paper, we demonstrate practical training of deep networks with natural-gradient variational inference. By applying techniques such as batch normalisation, data augmentation, and distributed training, we achieve similar performance in about the same number of epochs as the Adam optimiser, even on large datasets such as ImageNet. Importantly, the benefits of Bayesian principles are preserved: predictive probabilities are well-calibrated, uncertainties on out-of-distribution data are improved, and continual-learning performance is boosted. This work enables practical deep learning while preserving benefits of Bayesian principles. A PyTorch implementation is available as a plug-and-play optimiser.
 
-## Other Second-order Optimization
+## Natural Gradient Descent
 
 - Natural Gradient Works Efficiently in Learning [[paper]](https://ieeexplore.ieee.org/document/6790500)
   - Shun-ichi Amari
   - 1998
   - <details><summary>Digest</summary> When a parameter space has a certain underlying structure, the ordinary gradient of a function does not represent its steepest direction, but the natural gradient does. Information geometry is used for calculating the natural gradients in the parameter space of perceptrons, the space of matrices (for blind source separation), and the space of linear dynamical systems (for blind source deconvolution). The dynamical behavior of natural gradient online learning is analyzed and is proved to be Fisher efficient, implying that it has asymptotically the same performance as the optimal batch estimation of parameters. This suggests that the plateau phenomenon, which appears in the backpropagation learning algorithm of multilayer perceptrons, might disappear or might not be so serious when the natural gradient is used. An adaptive method of updating the learning rate is proposed and analyzed.
 
+- On Natural Learning and Pruning in Multilayered Perceptrons [[paper]](https://repository.ubn.ru.nl/bitstream/handle/2066/100962/100962.pdf;jsessionid=75152C23E1CE32AF7B8021F952C7E483?sequence=1)
+  - Tom Heskes
+  - 2000
+  - <details><summary>Digest</summary> Several studies have shown that natural gradient descent for on-line learning is much more efficient than standard gradient descent. In this article, we derive natural gradients in a slightly different manner and discuss implications for batch-mode learning and pruning, linking them to existing algorithms such as Levenberg-Marquardt optimization and optimal brain surgeon.The Fisher matrix plays an important role in all these algorithms. The second half of the article discusses a layered approximation of the Fisher matrix specific to multilayered perceptrons. Using this approximation rather than the exact Fisher matrix, we arrive at much faster “natural” learning algorithms and more robust pruning procedures.
+
 - Topmoumoute Online Natural Gradient Algorithm [[paper]](https://papers.nips.cc/paper_files/paper/2007/hash/9f61408e3afb633e50cdf1b20de6f466-Abstract.html)
   - Nicolas Roux, Pierre-antoine Manzagol, Yoshua Bengio.
-  - 2007
+  - 2008
   - <details><summary>Digest</summary> Guided by the goal of obtaining an optimization algorithm that is both fast and yielding good generalization, we study the descent direction maximizing the decrease in generalization error or the probability of not increasing generalization error. The surprising result is that from both the Bayesian and frequentist perspectives this can yield the natural gradient direction. Although that direction can be very expensive to compute we develop an efficient, general, online approximation to the natural gradient descent which is suited to large scale problems. We report experimental results showing much faster convergence in computation time and in number of iterations with TONGA (Topmoumoute Online natural Gradient Algorithm) than with stochastic gradient descent, even on very large datasets.
 
 - Revisiting Natural Gradient for Deep Networks [[paper]](https://arxiv.org/abs/1301.3584)
   - Razvan Pascanu, Yoshua Bengio
   - 2013
   - <details><summary>Digest</summary> We evaluate natural gradient, an algorithm originally proposed in Amari (1997), for learning deep models. The contributions of this paper are as follows. We show the connection between natural gradient and three other recently proposed methods for training deep models: Hessian-Free (Martens, 2010), Krylov Subspace Descent (Vinyals and Povey, 2012) and TONGA (Le Roux et al., 2008). We describe how one can use unlabeled data to improve the generalization error obtained by natural gradient and empirically evaluate the robustness of the algorithm to the ordering of the training set compared to stochastic gradient descent. Finally we extend natural gradient to incorporate second order information alongside the manifold information and provide a benchmark of the new algorithm using a truncated Newton approach for inverting the metric matrix instead of using a diagonal approximation of it.
+
+- Riemannian metrics for neural networks I: feedforward networks [[paper]](https://arxiv.org/abs/1303.0818)
+  - Yann Ollivier
+  - 2015
+  - <details><summary>Digest</summary> We describe four algorithms for neural network training, each adapted to different scalability constraints. These algorithms are mathematically principled and invariant under a number of transformations in data and network representation, from which performance is thus independent. These algorithms are obtained from the setting of differential geometry, and are based on either the natural gradient using the Fisher information matrix, or on Hessian methods, scaled down in a specific way to allow for scalability while keeping some of their key mathematical properties.
+
+## Other Second-order Optimization
 
 - Second-Order Stochastic Optimization for Machine Learning in Linear Time [[paper]](https://arxiv.org/abs/1602.03943)
   - Naman Agarwal, Brian Bullins, Elad Hazan
