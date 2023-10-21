@@ -169,7 +169,6 @@
   - 2019
   - <details><summary>Digest</summary> We present practical Levenberg-Marquardt variants of Gauss-Newton and natural gradient methods for solving non-convex optimization problems that arise in training deep neural networks involving enormous numbers of variables and huge data sets. Our methods use subsampled Gauss-Newton or Fisher information matrices and either subsampled gradient estimates (fully stochastic) or full gradients (semi-stochastic), which, in the latter case, we prove convergent to a stationary point. By using the Sherman-Morrison-Woodbury formula with automatic differentiation (backpropagation) we show how our methods can be implemented to perform efficiently. Finally, numerical results are presented to demonstrate the effectiveness of our proposed methods.
 
-
 - Sketchy Empirical Natural Gradient Methods for Deep Learning [[paper]](https://arxiv.org/abs/2006.05924)
   - Minghan Yang, Dong Xu, Zaiwen Wen, Mengyun Chen, Pengxiang Xu.
   - 2020
@@ -254,6 +253,16 @@
 
 ## Other Second-order Optimization
 
+- Natural Gradient Works Efficiently in Learning [[paper]](https://ieeexplore.ieee.org/document/6790500)
+  - Shun-ichi Amari
+  - 1998
+  - <details><summary>Digest</summary> When a parameter space has a certain underlying structure, the ordinary gradient of a function does not represent its steepest direction, but the natural gradient does. Information geometry is used for calculating the natural gradients in the parameter space of perceptrons, the space of matrices (for blind source separation), and the space of linear dynamical systems (for blind source deconvolution). The dynamical behavior of natural gradient online learning is analyzed and is proved to be Fisher efficient, implying that it has asymptotically the same performance as the optimal batch estimation of parameters. This suggests that the plateau phenomenon, which appears in the backpropagation learning algorithm of multilayer perceptrons, might disappear or might not be so serious when the natural gradient is used. An adaptive method of updating the learning rate is proposed and analyzed.
+
+- Practical Gauss-Newton Optimisation for Deep Learning [[paper]](https://arxiv.org/abs/1706.03662)
+  - Aleksandar Botev, Hippolyt Ritter, David Barber
+  - 2017
+  - <details><summary>Digest</summary> We present an efficient block-diagonal ap- proximation to the Gauss-Newton matrix for feedforward neural networks. Our result- ing algorithm is competitive against state- of-the-art first order optimisation methods, with sometimes significant improvement in optimisation performance. Unlike first-order methods, for which hyperparameter tuning of the optimisation parameters is often a labo- rious process, our approach can provide good performance even when used with default set- tings. A side result of our work is that for piecewise linear transfer functions, the net- work objective function can have no differ- entiable local maxima, which may partially explain why such transfer functions facilitate effective optimisation.
+
 - Second-Order Neural ODE Optimizer [[paper]](https://arxiv.org/abs/2109.14158)
   - Guan-Horng Liu, Tianrong Chen, Evangelos A. Theodorou
   - 2021
@@ -265,6 +274,11 @@
   - Guodong Zhang, Chaoqi Wang, Bowen Xu, Roger Grosse
   - 2018
   - <details><summary>Digest</summary> Weight decay is one of the standard tricks in the neural network toolbox, but the reasons for its regularization effect are poorly understood, and recent results have cast doubt on the traditional interpretation in terms of L2 regularization. Literal weight decay has been shown to outperform L2 regularization for optimizers for which they differ. We empirically investigate weight decay for three optimization algorithms (SGD, Adam, and K-FAC) and a variety of network architectures. We identify three distinct mechanisms by which weight decay exerts a regularization effect, depending on the particular optimization algorithm and architecture: (1) increasing the effective learning rate, (2) approximately regularizing the input-output Jacobian norm, and (3) reducing the effective damping coefficient for second-order optimization. Our results provide insight into how to improve the regularization of neural networks.
+
+- Limitations of the Empirical Fisher Approximation for Natural Gradient Descent [[paper]](https://arxiv.org/abs/1905.12558)
+  - Frederik Kunstner, Lukas Balles, Philipp Hennig
+  - 2019
+  - <details><summary>Digest</summary> Natural gradient descent, which preconditions a gradient descent update with the Fisher information matrix of the underlying statistical model, is a way to capture partial second-order information. Several highly visible works have advocated an approximation known as the empirical Fisher, drawing connections between approximate second-order methods and heuristics like Adam. We dispute this argument by showing that the empirical Fisher---unlike the Fisher---does not generally capture second-order information. We further argue that the conditions under which the empirical Fisher approaches the Fisher (and the Hessian) are unlikely to be met in practice, and that, even on simple optimization problems, the pathologies of the empirical Fisher can have undesirable effects.
 
 - Which Algorithmic Choices Matter at Which Batch Sizes? Insights From a Noisy Quadratic Model [[paper]](https://arxiv.org/abs/1907.04164)
   - Guodong Zhang, Lala Li, Zachary Nado, James Martens, Sushant Sachdeva, George E. Dahl, Christopher J. Shallue, Roger Grosse
@@ -302,3 +316,8 @@
   - Shun-ichi Amari, Jimmy Ba, Roger Grosse, Xuechen Li, Atsushi Nitanda, Taiji Suzuki, Denny Wu, Ji Xu
   - 2020
   - <details><summary>Digest</summary> While second order optimizers such as natural gradient descent (NGD) often speed up optimization, their effect on generalization has been called into question. This work presents a more nuanced view on how the \textit{implicit bias} of first- and second-order methods affects the comparison of generalization properties. We provide an exact asymptotic bias-variance decomposition of the generalization error of overparameterized ridgeless regression under a general class of preconditioner P, and consider the inverse population Fisher information matrix (used in NGD) as a particular example. We determine the optimal P for both the bias and variance, and find that the relative generalization performance of different optimizers depends on the label noise and the "shape" of the signal (true parameters): when the labels are noisy, the model is misspecified, or the signal is misaligned with the features, NGD can achieve lower risk; conversely, GD generalizes better than NGD under clean labels, a well-specified model, or aligned signal. Based on this analysis, we discuss several approaches to manage the bias-variance tradeoff, and the potential benefit of interpolating between GD and NGD. We then extend our analysis to regression in the reproducing kernel Hilbert space and demonstrate that preconditioned GD can decrease the population risk faster than GD. Lastly, we empirically compare the generalization error of first- and second-order optimizers in neural network experiments, and observe robust trends matching our theoretical analysis.
+
+- New Insights and Perspectives on the Natural Gradient Method [[paper]](https://jmlr.org/papers/v21/17-678.html)
+  - James Martens
+  - 2020
+  - <details><summary>Digest</summary> Natural gradient descent is an optimization method traditionally motivated from the perspective of information geometry, and works well for many applications as an alternative to stochastic gradient descent. In this paper we critically analyze this method and its properties, and show how it can be viewed as a type of 2nd-order optimization method, with the Fisher information matrix acting as a substitute for the Hessian. In many important cases, the Fisher information matrix is shown to be equivalent to the Generalized Gauss-Newton matrix, which both approximates the Hessian, but also has certain properties that favor its use over the Hessian. This perspective turns out to have significant implications for the design of a practical and robust natural gradient optimizer, as it motivates the use of techniques like trust regions and Tikhonov regularization. Additionally, we make a series of contributions to the understanding of natural gradient and 2nd-order methods, including: a thorough analysis of the convergence speed of stochastic natural gradient descent (and more general stochastic 2nd-order methods) as applied to convex quadratics, a critical examination of the oft-used 'empirical' approximation of the Fisher matrix, and an analysis of the (approximate) parameterization invariance property possessed by natural gradient methods (which we show also holds for certain other curvature matrices, but notably not the Hessian).
