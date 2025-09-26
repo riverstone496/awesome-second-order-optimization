@@ -5,6 +5,7 @@
   - [K-FAC](#k-fac)
   - [Distributed K-FAC](#distributed-k-fac)
   - [Shampoo](#shampoo)
+  - [Matrix-Sign](#matrix-sign)
   - [SMW](#smw)
   - [PSGD](#psgd)
   - [Proximal Point Optimization](#proximal-point-optimization)
@@ -177,6 +178,44 @@
   - Siddharth Singh, Zachary Sating, Abhinav Bhatele.
   - 2023
   - <details><summary>Digest</summary> We present practical Levenberg-Marquardt variants of Gauss-Newton and natural gradient methods for solving non-convex optimization problems that arise in training deep neural networks involving enormous numbers of variables and huge data sets. Our methods use subsampled Gauss-Newton or Fisher information matrices and either subsampled gradient estimates (fully stochastic) or full gradients (semi-stochastic), which, in the latter case, we prove convergent to a stationary point. By using the Sherman-Morrison-Woodbury formula with automatic differentiation (backpropagation) we show how our methods can be implemented to perform efficiently. Finally, numerical results are presented to demonstrate the effectiveness of our proposed methods.
+- SOAP: Improving and Stabilizing Shampoo using Adam [[paper]](https://arxiv.org/abs/2409.11321)
+  - Nikhil Vyas, Depen Morwani, Rosie Zhao, Mujin Kwun, Itai Shapira, David Brandfonbrener, Lucas Janson, Sham Kakade.
+  - 2024
+  - <details><summary>Digest</summary> WThere is growing evidence of the effectiveness of Shampoo, a higher-order preconditioning method, over Adam in deep learning optimization tasks. However, Shampoo's drawbacks include additional hyperparameters and computational overhead when compared to Adam, which only updates running averages of first- and second-moment quantities. This work establishes a formal connection between Shampoo (implemented with the 1/2 power) and Adafactor -- a memory-efficient approximation of Adam -- showing that Shampoo is equivalent to running Adafactor in the eigenbasis of Shampoo's preconditioner. This insight leads to the design of a simpler and computationally efficient algorithm: ShampoO with Adam in the Preconditioner's eigenbasis (SOAP).With regards to improving Shampoo's computational efficiency, the most straightforward approach would be to simply compute Shampoo's eigendecomposition less frequently. Unfortunately, as our empirical results show, this leads to performance degradation that worsens with this frequency. SOAP mitigates this degradation by continually updating the running average of the second moment, just as Adam does, but in the current (slowly changing) coordinate basis. Furthermore, since SOAP is equivalent to running Adam in a rotated space, it introduces only one additional hyperparameter (the preconditioning frequency) compared to Adam. We empirically evaluate SOAP on language model pre-training with 360m and 660m sized models. In the large batch regime, SOAP reduces the number of iterations by over 40% and wall clock time by over 35% compared to AdamW, with approximately 20% improvements in both metrics compared to Shampoo. 
+
+
+## Matrix-Sign
+
+- Preconditioned Spectral Descent for Deep Learning
+ [[paper]](https://papers.nips.cc/paper_files/paper/2015/hash/f50a6c02a3fc5a3a5d4d9391f05f3efc-Abstract.html)
+  - Preconditioned Spectral Descent for Deep Learning
+  - 2015
+  - <details><summary>Digest</summary> Deep learning presents notorious computational challenges. These challenges include, but are not limited to, the non-convexity of learning objectives and estimating the quantities needed for optimization algorithms, such as gradients. While we do not address the non-convexity, we present an optimization solution that ex- ploits the so far unused “geometry” in the objective function in order to best make use of the estimated gradients. Previous work attempted similar goals with preconditioned methods in the Euclidean space, such as L-BFGS, RMSprop, and ADA-grad. In stark contrast, our approach combines a non-Euclidean gradient method with preconditioning. We provide evidence that this combination more accurately captures the geometry of the objective function compared to prior work. We theoretically formalize our arguments and derive novel preconditioned non-Euclidean algorithms. The results are promising in both computational time and quality when applied to Restricted Boltzmann Machines, Feedforward Neural Nets, and Convolutional Neural Nets.
+  
+- Modular Duality in Deep Learning
+ [[paper]](https://arxiv.org/abs/2410.21265)
+  - Jeremy Bernstein, Laker Newhouse.
+  - 2024
+  - <details><summary>Digest</summary> An old idea in optimization theory says that since the gradient is a dual vector it may not be subtracted from the weights without first being mapped to the primal space where the weights reside. We take this idea seriously in this paper and construct such a duality map for general neural networks. Our map, which we call modular dualization, forms a unifying theoretical basis for training algorithms that are a) fast and b) scalable. Modular dualization involves first assigning operator norms to layers based on the semantics of each layer, and then using these layerwise norms to recursively induce a duality map on the weight space of the full neural architecture. We conclude by deriving GPU-friendly algorithms for dualizing Embed, Linear and Conv2D layers -- the latter two methods are based on a rectangular Newton-Schulz iteration (Kovarik, 1970; Björck & Bowie, 1971). A variant of our methods was used to set speed records for training NanoGPT. Overall, we hope that our theory of modular duality will yield a next generation of fast and scalable optimizers for general neural architectures.
+
+- Training Deep Learning Models with Norm-Constrained LMOs
+ [[paper]](https://arxiv.org/abs/2502.07529)
+  - Thomas Pethick, Wanyun Xie, Kimon Antonakopoulos, Zhenyu Zhu, Antonio Silveti-Falls, Volkan Cevher
+  - 2025
+  - <details><summary>Digest</summary> In this work, we study optimization methods that leverage the linear minimization oracle (LMO) over a norm-ball. We propose a new stochastic family of algorithms that uses the LMO to adapt to the geometry of the problem and, perhaps surprisingly, show that they can be applied to unconstrained problems. The resulting update rule unifies several existing optimization methods under a single framework. Furthermore, we propose an explicit choice of norm for deep architectures, which, as a side benefit, leads to the transferability of hyperparameters across model sizes. Experimentally, we demonstrate significant speedups on nanoGPT training using our algorithm, Scion, without any reliance on Adam. The proposed method is memory-efficient, requiring only one set of model weights and one set of gradients, which can be stored in half-precision.
+
+- Muon is Scalable for LLM Training
+ [[paper]](https://arxiv.org/abs/2502.16982)
+  - Moonshot AI and UCLA.
+  - 2025
+  - <details><summary>Digest</summary> Recently, the Muon optimizer based on matrix orthogonalization has demonstrated strong results in training small-scale language models, but the scalability to larger models has not been proven. We identify two crucial techniques for scaling up Muon: (1) adding weight decay and (2) carefully adjusting the per-parameter update scale. These techniques allow Muon to work out-of-the-box on large-scale training without the need of hyper-parameter tuning. Scaling law experiments indicate that Muon achieves ∼2× computational efficiency compared to AdamW with compute optimal training.Based on these improvements, we introduce Moonlight, a 3B/16B-parameter Mixture-of-Expert (MoE) model trained with 5.7T tokens using Muon. Our model improves the current Pareto frontier, achieving better performance with much fewer training FLOPs compared to prior models. We open-source our distributed Muon implementation that is memory optimal and communication efficient. We also release the pretrained, instruction-tuned, and intermediate checkpoints to support future research.
+
+- Dion: Distributed Orthonormalized Updates
+ [[paper]](https://arxiv.org/abs/2504.05295)
+  - Kwangjun Ahn, Byron Xu, Natalie Abreu, Ying Fan, Gagik Magakyan, Pratyusha Sharma, Zheng Zhan, John Langford.
+  - 2025
+  - <details><summary>Digest</summary> Orthonormalized updates accelerate training, improve stability, and enable robust hyperparameter transfer, but existing methods like Muon rely on dense matrix operations that clash with sharded weights in large-scale LLM training, causing high compute and communication cost. We introduce Dion (Distributed Orthonormalization), a scalable and efficient update rule that replaces Newton-Schulz iteration with amortized power iteration on a momentum buffer, avoiding full-matrix reconstruction and integrating cleanly with weight sharding. The rank-fraction parameter with error feedback enables low-rank updates that balance quality with significant cost savings. On language models from 160M to 3B parameters, Dion retains the benefits of orthonormalized updates, while markedly reducing wall-clock time at scale, making it a practical optimizer for next-generation foundation models.
+
 
 ## SMW
 
