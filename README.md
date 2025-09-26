@@ -15,7 +15,8 @@
   - [Diagonal Second-Order Optimization](#diagonal-second-order-optimization)
   - [Bayesian Second-Order Optimization](#bayesian-second-order-optimization)
   - [Other Second-order Optimization](#other-second-order-optimization)
-  - [Application](#application)
+  - [Application to PINN](#application-to-pinn)
+  - [General Application](#general-application)
   - [Empirical Study](#empirical-study)
   - [Theoretical Study](#theoretical-study)
 
@@ -463,13 +464,18 @@
   - 2025
   - <details><summary>Digest</summary> Second-order optimization methods, which leverage the local curvature of the loss function, have the potential to dramatically accelerate the training of machine learning models. However, these methods are often hindered by the computational burden of constructing and inverting large curvature matrices with   elements, where   is the number of parameters. In this work, we present a theory that predicts the \emph{exact} structure of the global curvature by leveraging the intrinsic symmetries of neural networks, such as invariance under parameter permutations. For Multi-Layer Perceptrons (MLPs), our approach reveals that the global curvature can be expressed in terms of   independent factors, where   is the number of input/output dimensions and   is the number of layers, significantly reducing the computational burden compared to the   elements of the full matrix. These factors can be estimated efficiently, enabling precise curvature computations. To evaluate the practical implications of our framework, we apply second-order optimization to synthetic data, achieving markedly faster convergence compared to traditional optimization methods. Our findings pave the way for a better understanding of the loss landscape of neural networks, and for designing more efficient training methodologies in deep learning.
 
-## Application
+## Application to PINN
 
-- Preconditioners for the Stochastic Training of Neural Fields [[paper]](https://arxiv.org/abs/2402.08784)
-  - Shin-Fang Chng, Hemanth Saratchandran, Simon Lucey
+- Achieving High Accuracy with PINNs via Energy Natural Gradients [[paper]](https://arxiv.org/abs/2402.08784)
+  - Johannes Müller, Marius Zeinhofer
+  - 2023
+  - <details><summary>Digest</summary> We propose energy natural gradient descent, a natural gradient method with respect to a Hessian-induced Riemannian metric as an optimization algorithm for physics-informed neural networks (PINNs) and the deep Ritz method. As a main motivation we show that the update direction in function space resulting from the energy natural gradient corresponds to the Newton direction modulo an orthogonal projection onto the model's tangent space. We demonstrate experimentally that energy natural gradient descent yields highly accurate solutions with errors several orders of magnitude smaller than what is obtained when training PINNs with standard optimizers like gradient descent or Adam, even when those are allowed significantly more computation time.
+
+- Challenges in Training PINNs: A Loss Landscape Perspective [[paper]](https://arxiv.org/abs/2402.01868)
+  - Pratik Rathore, Weimu Lei, Zachary Frangella, Lu Lu, Madeleine Udell
   - 2024
-  - <details><summary>Digest</summary> Neural fields encode continuous multidimensional signals as neural networks, enabling diverse applications in computer vision, robotics, and geometry. While Adam is effective for stochastic optimization, it often requires long training times. To address this, we explore alternative optimization techniques to accelerate training without sacrificing accuracy. Traditional second-order methods like L-BFGS are unsuitable for stochastic settings. We propose a theoretical framework for training neural fields with curvature-aware diagonal preconditioners, demonstrating their effectiveness across tasks such as image reconstruction, shape modeling, and Neural Radiance Fields (NeRF).
-
+  - <details><summary>Digest</summary> This paper explores challenges in training Physics-Informed Neural Networks (PINNs), emphasizing the role of the loss landscape in the training process. We examine difficulties in minimizing the PINN loss function, particularly due to ill-conditioning caused by differential operators in the residual term. We compare gradient-based optimizers Adam, L-BFGS, and their combination Adam+L-BFGS, showing the superiority of Adam+L-BFGS, and introduce a novel second-order optimizer, NysNewton-CG (NNCG), which significantly improves PINN performance. Theoretically, our work elucidates the connection between ill-conditioned differential operators and ill-conditioning in the PINN loss and shows the benefits of combining first- and second-order optimization methods. Our work presents valuable insights and more powerful optimization strategies for training PINNs, which could improve the utility of PINNs for solving difficult partial differential equations.
+  
 - Gradient Alignment in Physics-informed Neural Networks: A Second-Order Optimization Perspective [[paper]](https://arxiv.org/abs/2502.00604)
   - Sifan Wang, Ananyae Kumar Bhartari, Bowen Li, Paris Perdikaris
   - 2025
@@ -479,6 +485,18 @@
   - Yongji Wang, Mehdi Bennani, James Martens, Sébastien Racanière, Sam Blackwell, Alex Matthews, Stanislav Nikolov, Gonzalo Cao-Labora, Daniel S. Park, Martin Arjovsky, Daniel Worrall, Chongli Qin, Ferran Alet, Borislav Kozlovskii, Nenad Tomašev, Alex Davies, Pushmeet Kohli, Tristan Buckmaster, Bogdan Georgiev, Javier Gómez-Serrano, Ray Jiang, Ching-Yao Lai
   - 2025
   - <details><summary>Digest</summary> Whether singularities can form in fluids remains a foundational unanswered question in mathematics. This phenomenon occurs when solutions to governing equations, such as the 3D Euler equations, develop infinite gradients from smooth initial conditions. Historically, numerical approaches have primarily identified stable singularities. However, these are not expected to exist for key open problems, such as the boundary-free Euler and Navier-Stokes cases, where unstable singularities are hypothesized to play a crucial role. Here, we present the first systematic discovery of new families of unstable singularities. A stable singularity is a robust outcome, forming even if the initial state is slightly perturbed. In contrast, unstable singularities are exceptionally elusive; they require initial conditions tuned with infinite precision, being in a state of instability whereby infinitesimal perturbations immediately divert the solution from its blow-up trajectory. In particular, we present multiple new, unstable self-similar solutions for the incompressible porous media equation and the 3D Euler equation with boundary, revealing a simple empirical asymptotic formula relating the blow-up rate to the order of instability. Our approach combines curated machine learning architectures and training schemes with a high-precision Gauss-Newton optimizer, achieving accuracies that significantly surpass previous work across all discovered solutions. For specific solutions, we reach near double-float machine precision, attaining a level of accuracy constrained only by the round-off errors of the GPU hardware. This level of precision meets the requirements for rigorous mathematical validation via computer-assisted proofs. This work provides a new playbook for exploring the complex landscape of nonlinear partial differential equations (PDEs) and tackling long-standing challenges in mathematical physics.
+
+- FP64 is All You Need: Rethinking Failure Modes in Physics-Informed Neural Networks [[paper]](https://arxiv.org/abs/2505.10949)
+  - Chenhui Xu, Dancheng Liu, Amir Nassereldine, Jinjun Xiong
+  - 2025
+  - <details><summary>Digest</summary> Physics Informed Neural Networks (PINNs) often exhibit failure modes in which the PDE residual loss converges while the solution error stays large, a phenomenon traditionally blamed on local optima separated from the true solution by steep loss barriers. We challenge this understanding by demonstrate that the real culprit is insufficient arithmetic precision: with standard FP32, the LBFGS optimizer prematurely satisfies its convergence test, freezing the network in a spurious failure phase. Simply upgrading to FP64 rescues optimization, enabling vanilla PINNs to solve PDEs without any failure modes. These results reframe PINN failure modes as precision induced stalls rather than inescapable local minima and expose a three stage training dynamic unconverged, failure, success whose boundaries shift with numerical precision. Our findings emphasize that rigorous arithmetic precision is the key to dependable PDE solving with neural networks.
+
+## General Application
+
+- Preconditioners for the Stochastic Training of Neural Fields [[paper]](https://arxiv.org/abs/2402.08784)
+  - Shin-Fang Chng, Hemanth Saratchandran, Simon Lucey
+  - 2024
+  - <details><summary>Digest</summary> Neural fields encode continuous multidimensional signals as neural networks, enabling diverse applications in computer vision, robotics, and geometry. While Adam is effective for stochastic optimization, it often requires long training times. To address this, we explore alternative optimization techniques to accelerate training without sacrificing accuracy. Traditional second-order methods like L-BFGS are unsuitable for stochastic settings. We propose a theoretical framework for training neural fields with curvature-aware diagonal preconditioners, demonstrating their effectiveness across tasks such as image reconstruction, shape modeling, and Neural Radiance Fields (NeRF).
 
 ## Empirical Study
 
