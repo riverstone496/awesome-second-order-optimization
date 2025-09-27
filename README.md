@@ -232,6 +232,12 @@
   - 2024
   - <details><summary>Digest</summary> An old idea in optimization theory says that since the gradient is a dual vector it may not be subtracted from the weights without first being mapped to the primal space where the weights reside. We take this idea seriously in this paper and construct such a duality map for general neural networks. Our map, which we call modular dualization, forms a unifying theoretical basis for training algorithms that are a) fast and b) scalable. Modular dualization involves first assigning operator norms to layers based on the semantics of each layer, and then using these layerwise norms to recursively induce a duality map on the weight space of the full neural architecture. We conclude by deriving GPU-friendly algorithms for dualizing Embed, Linear and Conv2D layers -- the latter two methods are based on a rectangular Newton-Schulz iteration (Kovarik, 1970; Björck & Bowie, 1971). A variant of our methods was used to set speed records for training NanoGPT. Overall, we hope that our theory of modular duality will yield a next generation of fast and scalable optimizers for general neural architectures.
 
+- Muon: An optimizer for hidden layers in neural networks
+ [[blog]](https://kellerjordan.github.io/posts/muon/)
+  - Keller Jordan, Yuchen Jin, Vlado Boza, Jiacheng You, Franz Cesista, Laker Newhouse, Jeremy Bernstein
+  - 2024
+  - <details><summary>Digest</summary> Muon is an optimizer for the hidden layers in neural networks. It is used in the current training speed records for both NanoGPT and CIFAR-10 speedrunning. Many empirical results using Muon have already been posted, so this writeup will focus mainly on Muon’s design. First we will define Muon and provide an overview of the empirical results it has achieved so far. Then we will discuss its design in full detail, including connections to prior research and our best understanding of why it works. Finally we will end with a discussion on standards of evidence in optimization research.
+
 - Training Deep Learning Models with Norm-Constrained LMOs
  [[paper]](https://arxiv.org/abs/2502.07529)
   - Thomas Pethick, Wanyun Xie, Kimon Antonakopoulos, Zhenyu Zhu, Antonio Silveti-Falls, Volkan Cevher
