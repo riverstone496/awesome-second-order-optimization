@@ -4,7 +4,7 @@
 - [Awesome Second Order Optimization ](#awesome-second-order-optimization-)
   - [K-FAC](#k-fac)
   - [Distributed K-FAC](#distributed-k-fac)
-  - [Shampoo](#shampoo)
+  - [AdaGrad / Shampoo](#adagrad--shampoo)
   - [Matrix-Sign](#matrix-sign)
   - [SMW](#smw)
   - [PSGD](#psgd)
@@ -181,7 +181,13 @@
   - 2023
   - <details><summary>Digest</summary> Pipeline parallelism enables efficient training of Large Language Models (LLMs) on large-scale distributed accelerator clusters. Yet, pipeline bubbles during startup and tear-down reduce the utilization of accelerators. Although efficient pipeline schemes with micro-batching and bidirectional pipelines have been proposed to maximize utilization, a significant number of bubbles cannot be filled using synchronous forward and backward passes. To address this problem, we suggest that extra work be assigned to the bubbles to gain auxiliary benefits in LLM training. As an example in this direction, we propose PipeFisher, which assigns the work of K-FAC, a second-order optimization method based on the Fisher information matrix, to the bubbles to accelerate convergence. In Phase 1 pretraining of BERT-Base and -Large models, PipeFisher reduces the (simulated) training time to 50-75% compared to training with a first-order optimizer by greatly improving the accelerator utilization and benefiting from the improved convergence by K-FAC.
 
-## Shampoo
+## AdaGrad / Shampoo
+
+- Adaptive Subgradient Methods for Online Learning and Stochastic Optimization [[paper]](https://jmlr.org/papers/v12/duchi11a.html)
+  - John Duchi, Elad Hazan, Yoram Singer.
+  - 2011
+  - <details><summary>Digest</summary> We present a new family of subgradient methods that dynamically incorporate knowledge of the geometry of the data observed in earlier iterations to perform more informative gradient-based learning. Metaphorically, the adaptation allows us to find needles in haystacks in the form of very predictive but rarely seen features. Our paradigm stems from recent advances in stochastic optimization and online learning which employ proximal functions to control the gradient steps of the algorithm. We describe and analyze an apparatus for adaptively modifying the proximal function, which significantly simplifies setting a learning rate and results in regret guarantees that are provably as good as the best proximal function that can be chosen in hindsight. We give several efficient algorithms for empirical risk minimization problems with common and important regularization functions and domain constraints. We experimentally study our theoretical analysis and show that adaptive subgradient methods outperform state-of-the-art, yet non-adaptive, subgradient algorithms.
+
 
 - Shampoo: Preconditioned Stochastic Tensor Optimization [[paper]](https://arxiv.org/abs/1802.09568)
   - Vineet Gupta, Tomer Koren, Yoram Singer.
