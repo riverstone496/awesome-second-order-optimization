@@ -588,6 +588,11 @@
 
 ## Theoretical Study
 
+- Understand the Effectiveness of Shortcuts through the Lens of DCA [[paper]](https://arxiv.org/abs/2412.09853)
+  - Youran Sun, Yihua Liu, Yi-Shuai Niu.
+  - 2024
+  - <details><summary>Digest</summary> Applies DCA (Difference-of-Convex Algorithm) to vanilla networks without skip connections and shows the resulting gradient update direction is equivalent to training a network with shortcuts. Both SGD and PPA turn out to be DCA special cases. The key finding is that skip connections implicitly exploit Hessian (second-order) information, not just zero-order information flow or first-order gradients. The authors also discover NegNet (h^l = -h^{l-1} + F(h^{l-1})), an architecture that performs on par with ResNet, confirming the DCA framework's predictions.
+
 - Online Natural Gradient as a Kalman Filter [[paper]](https://arxiv.org/abs/1703.00209)
   - Yann Ollivier
   - 2017
