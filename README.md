@@ -588,11 +588,6 @@
 
 ## Theoretical Study
 
-- Understand the Effectiveness of Shortcuts through the Lens of DCA [[paper]](https://arxiv.org/abs/2412.09853)
-  - Youran Sun, Yihua Liu, Yi-Shuai Niu.
-  - 2024
-  - <details><summary>Digest</summary> Applies DCA (Difference-of-Convex Algorithm) to vanilla networks without skip connections and shows the resulting gradient update direction is equivalent to training a network with shortcuts. Both SGD and PPA turn out to be DCA special cases. The key finding is that skip connections implicitly exploit Hessian (second-order) information, not just zero-order information flow or first-order gradients. The authors also discover NegNet (h^l = -h^{l-1} + F(h^{l-1})), an architecture that performs on par with ResNet, confirming the DCA framework's predictions.
-
 - Online Natural Gradient as a Kalman Filter [[paper]](https://arxiv.org/abs/1703.00209)
   - Yann Ollivier
   - 2017
@@ -643,6 +638,11 @@
   - 2020
   - <details><summary>Digest</summary> Natural gradient descent is an optimization method traditionally motivated from the perspective of information geometry, and works well for many applications as an alternative to stochastic gradient descent. In this paper we critically analyze this method and its properties, and show how it can be viewed as a type of 2nd-order optimization method, with the Fisher information matrix acting as a substitute for the Hessian. In many important cases, the Fisher information matrix is shown to be equivalent to the Generalized Gauss-Newton matrix, which both approximates the Hessian, but also has certain properties that favor its use over the Hessian. This perspective turns out to have significant implications for the design of a practical and robust natural gradient optimizer, as it motivates the use of techniques like trust regions and Tikhonov regularization. Additionally, we make a series of contributions to the understanding of natural gradient and 2nd-order methods, including: a thorough analysis of the convergence speed of stochastic natural gradient descent (and more general stochastic 2nd-order methods) as applied to convex quadratics, a critical examination of the oft-used 'empirical' approximation of the Fisher matrix, and an analysis of the (approximate) parameterization invariance property possessed by natural gradient methods (which we show also holds for certain other curvature matrices, but notably not the Hessian).
 
+- Understand the Effectiveness of Shortcuts through the Lens of DCA [[paper]](https://arxiv.org/abs/2412.09853)
+  - Youran Sun, Yihua Liu, Yi-Shuai Niu.
+  - 2024
+  - <details><summary>Digest</summary> Applies DCA (Difference-of-Convex Algorithm) to vanilla networks without skip connections and shows the resulting gradient update direction is equivalent to training a network with shortcuts. Both SGD and PPA turn out to be DCA special cases. The key finding is that skip connections implicitly exploit Hessian (second-order) information, not just zero-order information flow or first-order gradients. The authors also discover NegNet (h^l = -h^{l-1} + F(h^{l-1})), an architecture that performs on par with ResNet, confirming the DCA framework's predictions.
+  - 
 - On The Concurrence of Layer-wise Preconditioning Methods and Provable Feature Learning [[paper]](https://arxiv.org/abs/2502.01763)
   - Thomas T. Zhang, Behrad Moniri, Ansh Nagwekar, Faraz Rahman, Anton Xue, Hamed Hassani, Nikolai Matni
   - 2025
